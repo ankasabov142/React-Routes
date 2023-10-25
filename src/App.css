@@ -6,25 +6,23 @@
   vertical-align: middle;
   top: 45%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-45%, -50%);
 }
 table,
 th,
 td {
-    font-size: 20px;
+  font-size: 20px;
   vertical-align: auto;
   text-align: center;
-  border: 5px solid gray;
-  color: #69655b;
+  border: 5px solid rgb(171, 170, 170);
+  color: rgb(103, 101, 101);
+  text-decoration: wavy;
 }
 button {
   background: none;
+  color: rgb(103, 101, 101);
   border: 5px solid gray;
   border-radius: 30%;
   font-size: 20px;
   cursor: pointer;
-}
-td {
-  color: gray;
-  text-decoration: wavy;
 }
