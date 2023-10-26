@@ -1,51 +1,87 @@
-import React from 'react'
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
 
-export default function Home() {
-//   return (
-//     <div className="calculator">
-//     <h1>Calculator</h1>
+const Home = () => {
+  const [result, setResult] = useState('0');
+  const [firstNum, setFirstNum] = useState('');
+  const [operator, setOperator] = useState('');
+  const [waitingForSecondNum, setWaitingForSecondNum] = useState(false);
 
-//     <table>
-//       <tbody>
-//       <tr>
-//         <td>Res:</td>
-//         <td id="textResult">0</td>
-//         <td><button id="buttonEqual" onClick="operators('=')">=</button></td>
-//       </tr>
-//       <tr>
-//         <td><button onClick={numbers(1)} id="buttonOne">1</button></td>
-//         <td><button onClick={numbers(2)} id="buttonTwo">2</button></td>
-//         <td><button onClick={numbers(3)} id="buttonThree">3</button></td>
-//         <td><button onClick={operators('/')} id="buttonDivision">/</button></td>
-//       </tr>
-//       <tr>
-//         <td><button onClick={numbers(4)} id="buttonFour">4</button></td>
-//         <td><button onClick={numbers(5)} id="buttonFive">5</button></td>
-//         <td><button onClick={numbers(6)} id="buttonSix">6</button></td>
-//         <td><button onClick={operators('*')} id="buttonMultiplication">*</button></td>
-//       </tr>
-//       <tr>
-//         <td><button onClick={numbers(7)} id="buttonSeven">7</button></td>
-//         <td><button onClick={numbers(8)} id="buttonEight">8</button></td>
-//         <td><button onClick={numbers(9)} id="buttonNine">9</button></td>
-//         <td><button onClick={operators('+')} id="buttonAddition">+</button></td>
-//       </tr>
-//       <tr>
-//         <td><button onClick={operators('-')} id="buttonSubtracting">-</button></td>
-//         <td><button onClick={numbers(0)} id="buttonZero">0</button></td>
-//         <td><button onClick={numbers('.')} id="buttonDot">.</button></td>
-//       </tr>
-//       </tbody>
-//     </table>
-//     <script defer src="Calculator.js"></script>
-// </div>
-//   )
-return(
+  const handleNumberClick = (num) => {
+    if (waitingForSecondNum) {
+      setResult(num);
+      setWaitingForSecondNum(false);
+    } else {
+      setResult(result === '0' ? num : result + num);
+    }
+  };
+
+  const handleOperatorClick = (op) => {
+    if (op === '=') {
+      if (operator && firstNum) {
+        const secondNumber = parseFloat(result);
+        let newResult = '';
+        switch (operator) {
+          case '+':
+            newResult = parseFloat(firstNum) + secondNumber;
+            break;
+          case '-':
+            newResult = parseFloat(firstNum) - secondNumber;
+            break;
+          case '*':
+            newResult = parseFloat(firstNum) * secondNumber;
+            break;
+          case '/':
+            newResult = parseFloat(firstNum) / secondNumber;
+            break;
+          default:
+            break;
+        }
+        setResult(newResult.toFixed(2).toString());
+        setFirstNum('');
+        setOperator('');
+      }
+    } else {
+      setFirstNum(result);
+      setOperator(op);
+      setWaitingForSecondNum(true);
+    }
+  };
+
+  return (
     <div>
-    <h1>This is the home page</h1>
-    <Link to="about">Click to view our about page</Link>
-    <Link to="contact">Click to view our contact page</Link>
-  </div>
-)
-}
+      <h1>Calculator</h1>
+      <table>
+        <tr>
+          <td>Res:</td>
+          <td id="textResult">{result}</td>
+          <td><button onClick={() => handleOperatorClick('=')}>=</button></td>
+        </tr>
+        <tr>
+          <td><button onClick={() => handleNumberClick('1')}>1</button></td>
+          <td><button onClick={() => handleNumberClick('2')}>2</button></td>
+          <td><button onClick={() => handleNumberClick('3')}>3</button></td>
+          <td><button onClick={() => handleOperatorClick('/')}>/</button></td>
+        </tr>
+        <tr>
+          <td><button onClick={() => handleNumberClick('4')}>4</button></td>
+          <td><button onClick={() => handleNumberClick('5')}>5</button></td>
+          <td><button onClick={() => handleNumberClick('6')}>6</button></td>
+          <td><button onClick={() => handleOperatorClick('*')}>*</button></td>
+        </tr>
+        <tr>
+          <td><button onClick={() => handleNumberClick('7')}>7</button></td>
+          <td><button onClick={() => handleNumberClick('8')}>8</button></td>
+          <td><button onClick={() => handleNumberClick('9')}>9</button></td>
+          <td><button onClick={() => handleOperatorClick('+')}>+</button></td>
+        </tr>
+        <tr>
+          <td><button onClick={() => handleOperatorClick('-')}>-</button></td>
+          <td><button onClick={() => handleNumberClick('0')}>0</button></td>
+          <td><button onClick={() => handleNumberClick('.')}>.</button></td>
+        </tr>
+      </table>
+    </div>
+  );
+};
+
+export default Home;
