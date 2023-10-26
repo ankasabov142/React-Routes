@@ -1,28 +1,23 @@
-import "./App.css";
-import "./Calculator";
-import Home from "./Home";
-import Blog from "./Blog";
-import Contact from "./Contact";
-import { Routes, Route } from "react-router-dom"
-import numbers from "./Calculator";
-import operators from "./Calculator";
-import NavBar from "./NavBar";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './Home.js';
+import Blog from './Blog.js';
+import Contact from './Contact.js';
+
 function App() {
   return (
-<>
-<Router>
-  <NavBar />
-<Routes>
-        <Route path="/" Component={ <Home/> } />
-        <Route path="blog" Component={ <Blog/> } />
-        <Route path="contact" Component={ <Contact/> } />
-      </Routes>
-      </Router>
-
-</>    
-
+    <Router>
+      <div>
+        {/* Navigation or any other components that you want to display on all pages */}
+        {/* Define routes for Home, Blog, and Contact */}
+        <Routes>
+          <Route exact path="/Home" component={Home} />
+          <Route path="/Blog" component={Blog} />
+          <Route path="/Contact" component={Contact} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
 export default App;
-
