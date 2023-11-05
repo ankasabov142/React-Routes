@@ -1,35 +1,21 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Home from './Home.js';
-import Blog from './Blog.js';
-import Contact from './Contact.js';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import LoginForm from "./LoginForm";
+import RegistrationForm from "./RegistrationForm";
+import UserDashboard from "./UserDashboard";
+import CarList from "./CarList";
+import CarDetails from "./CarDetails";
 
 function App() {
   return (
     <Router>
-      <div>
-        {/* Navigation bar */}
-        <nav>
-          <ul>
-            <li>
-              <Link to="/Home">Home</Link>
-            </li>
-            <li>
-              <Link to="/Blog">Blog</Link>
-            </li>
-            <li>
-              <Link to="/Contact">Contact</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* Define routes for Home, Blog, and Contact */}
-        <Routes>
-          <Route path="/Home" element={<Home />} />
-          <Route path="/Blog" element={<Blog />} />
-          <Route path="/Contact" element={<Contact />} />
-        </Routes>
-      </div>
+      <Switch>
+        <Route path="/login" component={LoginForm} />
+        <Route path="/register" component={RegistrationForm} />
+        <Route path="/dashboard" component={UserDashboard} />
+        <Route path="/cars" component={CarList} />
+        <Route path="/car/:id" component={CarDetails} />
+      </Switch>
     </Router>
   );
 }
