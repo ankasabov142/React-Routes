@@ -12,6 +12,7 @@ table,
 th,
 td {
   font-size: 20px;
+  
   vertical-align: auto;
   text-align: center;
   border: 5px solid rgb(171, 170, 170);
