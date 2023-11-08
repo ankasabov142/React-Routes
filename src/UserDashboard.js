@@ -7,10 +7,9 @@ function UserDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userInfo = await getUserInfo(); // Implement getUserInfo function
+        const userInfo = await getUserInfo();
         setUser(userInfo);
       } catch (error) {
-        // Handle error
         console.error("Error fetching user info", error);
       }
     };
@@ -24,7 +23,6 @@ function UserDashboard() {
         <div>
           <h2>Welcome, {user.username}!</h2>
           <p>Email: {user.email}</p>
-          {/* Add edit user info form here */}
         </div>
       ) : (
         <p>Loading user information...</p>

@@ -12,17 +12,19 @@ function RegistrationForm() {
     e.preventDefault();
     try {
       const user = await registerUser(username, email, password);
-      // Handle successful registration and redirection to login
       history.push("/login");
     } catch (error) {
-      // Handle registration error
       console.error("Registration failed", error);
     }
   };
 
   return (
-    // Registration form JSX with input fields and submit button
-    x
+    <form onSubmit={handleRegister}>
+      <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+      <button type="submit">Register</button>
+    </form>
   );
 }
 

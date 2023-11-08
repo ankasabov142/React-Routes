@@ -27,4 +27,4 @@ export const registerUser = async (username, email, password) => {
   }
 };
 
-// Implement other API functions for user info, car management, etc.
+// implement other API functions for user info, car management, etc.

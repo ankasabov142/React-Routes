@@ -9,10 +9,9 @@ function CarDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const carInfo = await getCarById(id); // Implement getCarById function
+        const carInfo = await getCarById(id);
         setCar(carInfo);
       } catch (error) {
-        // Handle error
         console.error("Error fetching car details", error);
       }
     };
@@ -25,7 +24,6 @@ function CarDetails() {
       {car ? (
         <div>
           <h2>{car.make} - {car.model} - {car.year}</h2>
-          {/* Display other car details here */}
         </div>
       ) : (
         <p>Loading car details...</p>

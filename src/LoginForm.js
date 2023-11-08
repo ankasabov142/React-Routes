@@ -11,16 +11,18 @@ function LoginForm() {
     e.preventDefault();
     try {
       const user = await loginUser(email, password);
-      // Handle successful login and redirection
       history.push("/dashboard");
     } catch (error) {
-      // Handle login error
       console.error("Login failed", error);
     }
   };
 
   return (
-    // Login form JSX with input fields and submit button
+    <form onSubmit={handleLogin}>
+      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+      <button type="submit">Login</button>
+    </form>
   );
 }
 
